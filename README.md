@@ -110,18 +110,6 @@ The highest-correlated movies are returned as recommendations.
 
 ---
 
-# 🖥️ Streamlit Application
-
-The project includes an interactive Streamlit application.
-
-Users can:
-
-1. Select a movie.
-2. Choose the number of recommendations.
-3. Set the minimum number of ratings.
-4. Click **Recommend Movies**.
-5. View similar movies and their correlation scores.
-
 ### Example
 
 ```text
@@ -143,52 +131,6 @@ The application then displays the recommended movies and their similarity scores
 
 ---
 
-## 💻 Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Milan-maker-ui/movie-recommendation-system.git
-```
-
-Navigate to the project:
-
-```bash
-cd movie-recommendation-system
-```
-
-Create a virtual environment:
-
-```bash
-python -m venv venv
-```
-
-Activate it on Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-# ▶️ Run the Streamlit Application
-
-Run:
-
-```bash
-streamlit run app.py
-```
-
-Streamlit will provide a local URL where you can open the application in your browser.
-
----
-
 # ▶️ Run the Python Version
 
 You can also run the recommendation system without Streamlit:
@@ -196,18 +138,6 @@ You can also run the recommendation system without Streamlit:
 ```bash
 python main.py
 ```
-
----
-
-# 📓 Jupyter Notebook
-
-The original experimentation and analysis are available in:
-
-```text
-notebooks/Movie_Recommendation_System.ipynb
-```
-
-The notebook contains the exploratory analysis and development process behind the recommendation system.
 
 ---
 
@@ -251,23 +181,6 @@ The project can be extended with:
 * ☁️ Cloud deployment
 * 🐳 Docker support
 * 🧪 Automated testing
-
----
-
-# 🧪 Testing
-
-Basic recommendation logic can be tested using:
-
-```bash
-pytest
-```
-
-Tests can be added under:
-
-```text
-tests/
-└── test_recommender.py
-```
 
 ---
 
