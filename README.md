@@ -131,16 +131,6 @@ The application then displays the recommended movies and their similarity scores
 
 ---
 
-# ▶️ Run the Python Version
-
-You can also run the recommendation system without Streamlit:
-
-```bash
-python main.py
-```
-
----
-
 # 📈 Example Workflow
 
 For example, if the user selects:
