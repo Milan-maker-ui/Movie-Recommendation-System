@@ -1,48 +1,58 @@
 # 🎬 Movie Recommendation System
 
-A machine learning-based **Movie Recommendation System** that recommends similar movies based on user ratings. The project uses the **MovieLens dataset**, collaborative filtering, and Pearson correlation to identify movies with similar rating patterns.
+A machine learning-based Movie Recommendation System built with **Python, Pandas, and Streamlit**.
 
-The project also includes an interactive **Streamlit web application** where users can select a movie and receive recommendations.
+The system uses **collaborative filtering** and **Pearson correlation** to identify movies with similar user-rating patterns. An interactive Streamlit web application allows users to select a movie and receive personalized movie recommendations.
 
 ---
 
 ## 🚀 Features
 
-* 🎬 Movie recommendation using collaborative filtering
-* 📊 Exploratory Data Analysis
-* ⭐ Movie rating analysis
-* 👥 User–Movie rating matrix
-* 🔗 Movie similarity using Pearson correlation
-* 🎯 Top-N movie recommendations
-* 📈 Recommendation visualization
-* 🖥️ Interactive Streamlit web application
-* 🧩 Modular Python project structure
+- 🎬 Movie recommendations based on rating patterns
+- ⭐ Collaborative filtering
+- 📊 Pearson correlation-based movie similarity
+- 👥 User-Movie rating matrix
+- 📈 Rating and popularity visualizations
+- 🖥️ Interactive Streamlit web application
+- 🔢 Configurable number of recommendations
+- 🎯 Minimum rating threshold
+- 🧩 Modular Python project structure
+- 🧪 Unit tests with Pytest
 
 ---
 
 ## 🛠️ Technologies Used
 
-* **Python**
-* **Pandas**
-* **NumPy**
-* **Matplotlib**
-* **Scikit-learn**
-* **Streamlit**
-* **Jupyter Notebook**
+- **Python**
+- **Pandas**
+- **NumPy**
+- **Matplotlib**
+- **Scikit-learn**
+- **Streamlit**
+- **Pytest**
+- **Jupyter Notebook**
 
 ---
 
-
 ## 📊 Dataset
 
-This project uses the **MovieLens 100K dataset**.
+This project uses the **MovieLens 100K dataset** provided by GroupLens.
 
-The main files used are:
+The dataset contains:
 
-* `u.data` — user movie ratings
-* `Movie_Id_Titles.csv` — movie IDs and movie titles
+- 100,000 movie ratings
+- 1,000 users
+- 1,682 movies
 
-The rating data contains:
+### Dataset files used
+
+```text
+data/
+├── u.data
+└── u.item
+# 🎬 Movie Recommendation System
+
+* `u.data` — Contains user ratings with:
 
 ```text
 user_id
@@ -50,6 +60,20 @@ movie_id
 rating
 timestamp
 ```
+* `u.item` — Contains movie information including:
+
+```text
+movie_id
+title
+release_date
+IMDb URL
+genre information
+```
+
+A machine learning-based **Movie Recommendation System** that recommends similar movies based on user ratings. The project uses the **MovieLens dataset**, collaborative filtering, and Pearson correlation to identify movies with similar rating patterns.
+
+The project also includes an interactive **Streamlit web application** where users can select a movie and receive recommendations.
+
 
 ---
 
@@ -59,137 +83,268 @@ The recommendation pipeline follows these steps:
 
 ```text
 MovieLens Dataset
-       ↓
+       │
+       ▼
 Data Loading
-       ↓
+       │
+       ▼
 Data Preprocessing
-       ↓
-User–Movie Rating Matrix
-       ↓
-Movie Correlation
-       ↓
-Filter Movies by Rating Count
-       ↓
-Sort by Similarity
-       ↓
+       │
+       ▼
+User-Movie Rating Matrix
+       │
+       ▼
+Pearson Correlation
+       │
+       ▼
+Movie Similarity
+       │
+       ▼
+Filter by Minimum Ratings
+       │
+       ▼
 Top-N Recommendations
+       │
+       ▼
+Streamlit Application
 ```
 
 ### 1. Data Loading
 
-The datasets are loaded using Pandas.
+The system loads the original:
+u.data
+u.item
+files using Pandas.
 
-### 2. Data Preprocessing
+### 2. Merge Movie Information
 
-Movie ratings are analyzed to calculate:
+Ratings are combined with movie titles using movie_id.
 
-* Average movie rating
-* Number of ratings per movie
+### 3. Create User-Movie Matrix
 
-### 3. User–Movie Matrix
+A user-movie matrix is created:
 
-A matrix is created where:
-
-```text
 Rows    → Users
 Columns → Movies
 Values  → Ratings
-```
+### 4. Calculate Similarity
 
-### 4. Movie Similarity
+Pearson correlation is calculated between the selected movie and other movies.
 
-The system calculates the correlation between the selected movie and other movies.
+Movies with similar rating patterns receive higher correlation scores.
 
-Pearson correlation is used to identify movies with similar user-rating patterns.
+### 5. Filter Recommendations
 
-### 5. Recommendation
+Movies can be filtered based on the minimum number of ratings.
 
-Movies with sufficient rating data are filtered and sorted according to their correlation score.
+### 6. Generate Top-N Recommendations
 
-The highest-correlated movies are returned as recommendations.
+The system returns the movies with the highest similarity scores.
 
 ---
+## 🖥️ Streamlit Application
 
-### Example
+The project includes an interactive web application.
 
+Run:
+
+streamlit run app.py
+
+The application allows users to:
+```text
+Select a movie
+Choose the number of recommendations
+Set the minimum number of ratings
+Generate recommendations
+View correlation scores
+View a similarity chart
+```
+Example:
 ```text
 🎬 Movie Recommendation System
 
-Choose a Movie:
+
+Select a Movie:
 [ Star Wars (1977) ]
+
 
 Number of Recommendations:
 [ 10 ]
 
-Minimum Ratings:
+
+Minimum Number of Ratings:
 [ 100 ]
 
-[ Recommend Movies ]
+
+        [ 🎯 Recommend Movies ]
 ```
 
 The application then displays the recommended movies and their similarity scores.
 
 ---
+## ▶️ Run the Application
 
-# 📈 Example Workflow
+Start the Streamlit application:
 
-For example, if the user selects:
+streamlit run app.py
 
-```text
+The application will open in your browser.
+
+---
+
+## 🐍 Run Without Streamlit
+
+You can also run the recommendation system from the terminal:
+
+python main.py
+
+---
+
+🧪 Run Tests
+
+Run the unit tests:
+
+pytest
+
+---
+
+## 📈 Example Recommendation
+
+If the user selects:
+
 Star Wars (1977)
-```
 
-the system analyzes the rating patterns associated with that movie and returns movies with high correlation.
+the system calculates correlations between Star Wars and other movies.
 
-Example output format:
+The application returns results in the format:
 
-```text
-Movie                                Correlation
--------------------------------------------------
-Empire Strikes Back                  0.74
-Return of the Jedi                   0.68
-Raiders of the Lost Ark              0.64
-Back to the Future                   0.61
-```
+Movie                         Correlation    Ratings
+----------------------------------------------------
+Movie A                       0.74           200
+Movie B                       0.68           180
+Movie C                       0.64           150
 
-*The actual recommendations depend on the dataset and correlation calculations.*
+The exact recommendations depend on the MovieLens dataset and selected filtering parameters.
 
 ---
 
-# 🔮 Future Improvements
+## 🧠 Machine Learning Approach
 
-The project can be extended with:
+This project uses item-based collaborative filtering.
 
-* 🎞️ Movie posters
-* 🔎 Movie search/autocomplete
-* ⭐ Average rating display
-* 🎭 Genre-based recommendations
-* 🔥 Hybrid recommendation system
-* 🤖 Deep learning recommendation models
-* 🌐 Movie metadata APIs
-* 📱 Improved Streamlit UI
-* ☁️ Cloud deployment
-* 🐳 Docker support
-* 🧪 Automated testing
+Instead of recommending movies based on movie descriptions, genres, or keywords, the system analyzes how users have rated different movies.
+
+For example:
+
+Users
+ │
+ ├── Movie A → ⭐⭐⭐⭐⭐
+ ├── Movie B → ⭐⭐⭐⭐
+ └── Movie C → ⭐⭐
+
+If many users show similar rating patterns between two movies, those movies can have a higher correlation.
 
 ---
+
+## 📊 Visualization
+
+The project includes visualizations such as:
+
+Rating Distribution
+
+Shows how frequently different rating values occur.
+
+Most Rated Movies
+
+Shows movies with the highest number of user ratings.
+
+Recommendation Similarity
+
+The Streamlit application displays correlation scores using a bar chart.
+
+---
+
+## 📁 Module Description
+data_loader.py
+
+Responsible for:
+
+Loading u.data
+Loading u.item
+Handling dataset encoding
+Merging ratings with movie titles
+preprocessing.py
+
+Responsible for:
+
+Calculating movie statistics
+Creating the user-movie matrix
+recommender.py
+
+Contains the main recommendation algorithm.
+
+Responsible for:
+
+Calculating Pearson correlation
+Filtering movies
+Sorting recommendations
+Returning Top-N movies
+visualization.py
+
+Contains functions for:
+
+Rating distribution
+Popular movie visualization
+utils.py
+
+Contains reusable helper functions.
+
+app.py
+
+Provides the interactive Streamlit interface.
+
+main.py
+
+Provides a command-line version of the recommendation system.
+
+---
+
+## 🔮 Future Improvements
+
+Possible improvements include:
+
+🎞️ Movie posters
+🔎 Movie search functionality
+🎭 Genre-based recommendations
+🧠 Hybrid recommendation system
+🤖 Content-based filtering
+⭐ Personalized user recommendations
+🌐 Movie metadata API integration
+🐳 Docker support
+☁️ Cloud deployment
+📱 Improved UI/UX
+⚡ Recommendation performance optimization
+
 
 ## 📌 Project Highlights
 
-This project demonstrates practical experience with:
+This project demonstrates practical knowledge of:
 
-* Machine Learning
-* Recommendation Systems
-* Collaborative Filtering
-* Data Preprocessing
-* Exploratory Data Analysis
-* Python Programming
-* Data Visualization
-* Streamlit
-* Modular Software Development
+Machine Learning
+Recommendation Systems
+Collaborative Filtering
+Pearson Correlation
+Data Preprocessing
+Exploratory Data Analysis
+Data Visualization
+Python
+Pandas
+Streamlit
+Modular Software Development
+Unit Testing
 
----
+⭐ Support
 
-## ⭐ If You Find This Project Useful
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
 
-Consider giving the repository a ⭐ on GitHub.
+
