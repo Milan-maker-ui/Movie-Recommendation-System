@@ -1,8 +1,6 @@
 import pandas as pd
 
-
 class MovieRecommender:
-
     def __init__(self, movie_matrix, ratings):
         """
         Initialize the recommendation system.
